@@ -95,11 +95,10 @@ int main(int argc,char *argv[]){
 					}
 					printf("count : \n");
 					scanf("%d",&i_count);
-					printf("p = %s\n",product_name);
 					strcat(receipt,product_name);
 					memset(c_count,0,sizeof(c_count));
 					sprintf(c_count,"%d",i_count);
-					printf("receipt = %s\n",receipt);
+					printf("product_name = %s\n",product_name);
 					printf("count = %s\n",c_count);
 					if(send(sd,c_count,strlen(c_count)+1,0)==-1){
 						perror("send");
@@ -107,7 +106,6 @@ int main(int argc,char *argv[]){
 					}
 					strcat(receipt,"=");
 					strcat(receipt,c_count);
-					printf("receipt = %s\n",receipt);
 					strcat(receipt,"\n");
 				}
 				break;
