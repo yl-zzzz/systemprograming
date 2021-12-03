@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <stdlib.h>
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -7,24 +10,27 @@
 #include <unistd.h>
 #include <pthread.h>
 
-#define PORTNUM 9000
-#define NAME_SIZE 30
-#define BUF_SIZE 100
-void *add_msg(void *arg);
-void *cal_msg(void *arg);
-
-char name[NAME_SIZE] = "[default]";
-char msg[BUF_SIZE];
+#define PORTNUM 9004
 
 
-int main(void){
-	char buf[256];
-	char product_name[NAME_SIZE];
+
+int main(int argc,char *argv[]){
+	char buf[50];
+	char menu[] = "**************\n* 1. Calc \n* 2. Add inventory \n* 3. Exit \n* 4. View inventory List   \n***************\n";
+	char product_name[30];
 	struct sockaddr_in sin;
 	int flag = 1;
-	int sd,num,price;
+	char client[40];
+	int sd,i_count;
+	char c_count[5];
+	char check[3];
+	int fd;
+	caddr_t addr;
+	struct stat statbuf;
 	pthread_t recv_t;
-
+	char c_num[5];
+	
+	strcpy(client,"client");
 	if((sd = socket(AF_INET, SOCK_STREAM, 0)) == -1){
 		perror("socket");
 		exit(1);
@@ -39,68 +45,108 @@ int main(void){
 		perror("connect");
 		exit(1);
 	}
+	
+	if(stat("inventory.txt",&statbuf) == -1){
+		perror("stat");
+		exit(1);
+	}
+
+	if((fd = open("inventory.txt",O_RDWR)) == -1){
+		perror("open");
+		exit(1);
+	}
+
+	addr = mmap(NULL,statbuf.st_size,PROT_READ|PROT_WRITE,MAP_SHARED,fd,(off_t)0);
+	if(addr == MAP_FAILED){
+		perror("mmap");
+		exit(1);
+	}
+	char list[strlen(addr)];
+	close(fd);
+	send(sd,client,strlen(client)+1,0);
 	printf("****Welcome off-line_Client!!****\n");
-	printf("1. Add inventory\n2. calculate\n3. QUIT");
-	printf("***Choose :");
-	scanf("%d",num);
 	while(flag){
-		switch(num){
+		int i_num;
+		memset(c_num,0,sizeof(c_num));
+		printf("%s\n",menu);
+		printf("Choose\n");
+		scanf("%d",&i_num);
+		sprintf(c_num,"%d",i_num);
+		if(send(sd,c_num,strlen(c_num)+1,0) == -1){
+				perror("first send");
+				exit(1);
+		}
+		switch(i_num){
 			case 1:
-				printf("product name :  , price :\n");
-				scanf("%s %s",product_name,price);
+				while(1){
+					memset(product_name,'\0',sizeof(product_name));	
+					printf("Keep going or Enter exit\n");
+					printf("product name : \n");
+					scanf("%s",product_name);
+
+					if(send(sd,product_name,strlen(product_name)+1,0)==-1){
+							perror("send");
+							exit(1);
+					}
+					if(strcmp(product_name,"exit") == 0){
+						break;
+					}
+					printf("count : \n");
+					scanf("%d",&i_count);
+					printf("p = %s\n",product_name);
+			
+					memset(c_count,0,sizeof(c_count));
+					sprintf(c_count,"%d",i_count);
+					printf("count = %s\n",c_count);
+					if(send(sd,c_count,strlen(c_count)+1,0)==-1){
+						perror("send");
+						exit(1);
+					}
+					memset(check,0,sizeof(check));
+					recv(sd,check,sizeof(check),0);
+					if(strcmp(check,"0") == 0){
+							recv(sd,buf,sizeof(buf),0);
+							printf("%s\n",buf);
+					}
+				}
 				break;
 			case 2:
 				while(1){
-					printf("product name : ");
-					scanf("%s",produect_name);
+					memset(product_name,'\0',sizeof(product_name));	
+					printf("Keep going or Enter exit\n");
+					printf("product name : \n");
+					scanf("%s",product_name);
 
+					send(sd,product_name,strlen(product_name)+1,0);
+					if(strcmp(product_name,"exit") == 0){
+						break;	
+					}
+					printf("count : \n");
+					scanf("%d",&i_count);
+					printf("p = %s\n",product_name);
+			
+					memset(c_count,0,sizeof(c_count));
+					sprintf(c_count,"%d",i_count);
+					printf("count = %s\n",c_count);
+					if(send(sd,c_count,strlen(c_count)+1,0)==-1){
+						perror("send");
+						exit(1);
+					}
 				}
 				break;
-
 			case 3:
+				printf("--EXIT--\n");
 				flag = 0;
 				break;
+			case 4:
+				printf("<list>\n%s\n",addr);
+				break;
 			default:
-				printf("Error : Choose 1 or 2\n");
+				printf("Error : Choose 1 or 2 or 3 or 4\n");
 				break;
 		}
 	}
-
-	pthread_create(&add_t,NULL,send_msg,(void *)&sd);
-	pthread_create(&cal_t,NULL,recv_msg,(void *)&sd);
-	pthread_join(add_t,NULL);
-	pthread_join(cal_t,NULL);
 	close(sd);
 	return 0;
-}
-
-void *add_msg(void *arg){
-	int sock = *((int *)arg);
-	char add_msg[NAME_SIZE+BUF_SIZE];
-	while(1){
-		fgets(msg,BUF_SIZE,stdin);
-		if(!strcmp(msg,"QUIT\n")){
-			close(sock);
-			exit(0);
-		}
-		sprintf(name_msg,"%s %s",name,msg);
-		write(sock,name_msg,strlen(name_msg));
-	}
-	return NULL;
-}
-
-void *cal_msg(void *arg){
-	int sock = *((int *)arg);
-	char name_msg[NAME_SIZE+BUF_SIZE];
-	int str_len;
-	while(1){
-		str_len = read(sock,name_msg,sizeof(name_msg)-1);
-		if(str_len<0){
-			return NULL;
-		}
-		name_msg[str_len] = 0;
-		fputs(name_msg,stdout);
-	}
-	return NULL;
 }
 
