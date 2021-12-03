@@ -1,4 +1,4 @@
-<0ruits>
+<Fruits>
 apple=20
 orange=20
 cherry=13
