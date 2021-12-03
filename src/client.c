@@ -93,7 +93,7 @@ int main(int argc,char *argv[]){
 					}
 					printf("count : \n");
 					scanf("%d",&i_count);
-					printf("p = %s\n",product_name);
+					printf("product_name = %s\n",product_name);
 			
 					memset(c_count,0,sizeof(c_count));
 					sprintf(c_count,"%d",i_count);
@@ -123,7 +123,7 @@ int main(int argc,char *argv[]){
 					}
 					printf("count : \n");
 					scanf("%d",&i_count);
-					printf("p = %s\n",product_name);
+					printf("product_name = %s\n",product_name);
 			
 					memset(c_count,0,sizeof(c_count));
 					sprintf(c_count,"%d",i_count);
