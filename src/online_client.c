@@ -66,7 +66,7 @@ int main(int argc,char *argv[]){
 	strcpy(online_client,"online");
 	memset(receipt,0,sizeof(receipt));
 	send(sd,online_client,strlen(online_client)+1,0);
-	printf("****Welcome off-line_Client!!****\n");
+	printf("****Welcome On-line_Client!!****\n");
 	while(flag){
 		int i_num;
 		memset(c_num,0,sizeof(c_num));
