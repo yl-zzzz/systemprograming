@@ -46,4 +46,7 @@
   ### 6. 종료시키려면 메뉴얼창에서 Exit를 선택하면 된다.
   ### 7. 재고 목록을 보려면 View inventory list를 선택하면 목록이 출력된다.
   ### 8. 온라인에서도 동일한 방법으로 원하는 메뉴얼을 선택하고 실행하면 된다.
+# 실행 결과 캡쳐
+<img src="/Readme_img/demoCapture1.PNG" width=300 height = 250></p>
+ 
  
