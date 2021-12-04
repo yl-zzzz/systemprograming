@@ -47,9 +47,10 @@
   ### 7. 재고 목록을 보려면 View inventory list를 선택하면 목록이 출력된다.
   ### 8. 온라인에서도 동일한 방법으로 원하는 메뉴얼을 선택하고 실행하면 된다.
 # 실행 결과 캡쳐
+<p align="left">
 <img src="/Readme_img/demoCapture1.PNG" width=500 height = 450></p>
-<img src="/Readme_img/demoCapture2.PNG" width=500 height = 450></p>
-<img src="/Readme_img/demoCapture3.PNG" width=500 height = 450></p>
-<img src="/Readme_img/demoCapture4.PNG" width=500 height = 450></p>
+<p align="right"><img src="/Readme_img/demoCapture2.PNG" width=500 height = 450></p>
+<p align="left"><img src="/Readme_img/demoCapture3.PNG" width=500 height = 450></p>
+<p align="right"><img src="/Readme_img/demoCapture4.PNG" width=500 height = 200></p>
  
  
