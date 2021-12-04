@@ -95,7 +95,7 @@ int main(int argc,char *argv[]){
 					}
 					printf("count : \n");
 					scanf("%d",&i_count);
-					strcat(receipt,product_name);
+					
 					memset(c_count,0,sizeof(c_count));
 					sprintf(c_count,"%d",i_count);
 					printf("product_name = %s\n",product_name);
@@ -104,9 +104,17 @@ int main(int argc,char *argv[]){
 						perror("send");
 						exit(1);
 					}
-					strcat(receipt,"=");
-					strcat(receipt,c_count);
-					strcat(receipt,"\n");
+					memset(check,0,sizeof(check));
+					recv(sd,check,sizeof(check),0);
+					if(strcmp(check,"0")==0){
+						recv(sd,buf,sizeof(buf),0);
+						printf("%s\n",buf);
+					}else{
+						strcat(receipt,product_name);
+						strcat(receipt,"=");
+						strcat(receipt,c_count);
+						strcat(receipt,"\n");
+					}
 				}
 				break;
 			case 2:
