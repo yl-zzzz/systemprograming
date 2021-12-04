@@ -49,7 +49,8 @@
 # 실행 결과 캡쳐
 <img src="/Readme_img/DemoCapture1,2.png" width=500 height = 400>
 <img src="/Readme_img/DemoCapture3,4.png" width=500 height = 400>
-
+# 실행 결과 gif
+<img src="/Readme_img/DemoVideo.gif" width=600 height = 600>
 
 
  
