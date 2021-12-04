@@ -23,3 +23,4 @@
   ### 4. 서버에서 연결된 파일을 수정한다.</br>
   **사용언어 : C**
   </br>
+  <img src="/Readme_img/socket.PNG" width="300" height = "350"></p></br>
