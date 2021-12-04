@@ -30,7 +30,7 @@ int main(int argc,char *argv[]){
 	pthread_t recv_t;
 	char c_num[5];
 	
-	strcpy(client,"client");
+	strcpy(client,"offline");
 	if((sd = socket(AF_INET, SOCK_STREAM, 0)) == -1){
 		perror("socket");
 		exit(1);
