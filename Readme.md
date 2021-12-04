@@ -1,7 +1,7 @@
 <h3> 2021-2semester Systemprograming Project</h3>
 
 <h1 align="center">Inventory clearance program using sockets  </h1>
-<h4 align="center">Team Member</h4>
+<h3>Team Member</h3>
 <h4>유예린 : 기획,프로그래밍,보고서 작성, 발표 </h4>
 
 ------------------------------------------
@@ -17,4 +17,4 @@
 
 #2. 프로젝트 내용
 
-
+ *1.인터넷 소켓을 사용하여 클라이언트와 정보를 주고 받는다.
