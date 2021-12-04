@@ -51,7 +51,7 @@
 <img src="/Readme_img/DemoCapture3,4.png" width=500 height = 400>
 </br>
 # 실행 결과 gif
-<img src="/Readme_img/demoVideo.gif" width=600 height = 600>
+<img src="/Readme_img/demoVideo.gif" width=700 height = 600>
 
 
  
