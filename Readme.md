@@ -24,3 +24,6 @@
   **사용언어 : C**
   </br>
   <img src="/Readme_img/socket.PNG" width="300" height = "350"></p></br>
+# 3. 프로젝트 개발 결과물 (다이어그램)
+<p align="center">
+<img src="/Readme_img/diagram.PNG" width=600 height = 400></p>
