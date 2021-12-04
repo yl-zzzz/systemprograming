@@ -226,7 +226,6 @@ int main(void){
 					case 3:
 						printf("--EXIT--\n");
 						flag = 0;
-						pid = 1;
 						break;
 					case 4:
 						printf("looking list\n");
