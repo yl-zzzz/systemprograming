@@ -79,8 +79,8 @@ int main(void){
 		memset(server,0,sizeof(server));
 		recv(ns,server,sizeof(server),0);
 
-		if(strcmp(server,"client") == 0){
-				printf("client\n");
+		if(strcmp(server,"offline") == 0){
+				printf("offline\n");
 				check_client=1;
 		}else if(strcmp(server,"online") == 0){
 				check_client=0;
