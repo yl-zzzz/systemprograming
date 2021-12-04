@@ -18,4 +18,5 @@
 # 2. 프로젝트 내용
 
  * 1.인터넷 소켓을 사용하여 클라이언트와 정보를 주고 받는다.
- * <img src="/Readme_img/socket.PNG" width="300" height = "500"></p>
+ <br>
+ <img src="/Readme_img/socket.PNG" width="200" height = "350"></p>
