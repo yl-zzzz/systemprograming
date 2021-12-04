@@ -26,4 +26,9 @@
   <img src="/Readme_img/socket.PNG" width="300" height = "350"></p></br>
 # 3. 프로젝트 개발 결과물 (다이어그램)
 <p align="center">
-<img src="/Readme_img/diagram.PNG" width=500 height = 350></p>
+<img src="/Readme_img/diagram.PNG" width=450 height = 350></p>
+### sever.c) 서버에서는 소켓을 사용하여 클라이언트와 연결을 하고, fork()를 이용해 다중 프로세스를 만들 수 있도록 하였다.</br>
+### 서버에서는 클라이언트로 부터 원하는 메뉴얼을 입력받아서, mmap을 사용해서 연 파일에 재고를 추가하거나 제거하는 역할을 하게된다.
+### Offline_client.c) 오프라인 클라이언트 서버에서는 재고를 추가하고, 삭제하는 작업을 수행하는 클라이언트이다.
+### 오프라인 클라이언트가 원하는 매뉴얼을 send를 통해 서버에게 전달해주면 서버가 작업을 수행하고 재고 목록을 확인 할 수 있다.
+### Online_client.c) 온라인 클라이언트는 물건을 사고, 자신이 산 물건 목록을 확인할 수 있는 클라이언트이다.
